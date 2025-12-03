@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load django_bootstrap5 %}
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Funcionários</title>
+
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body{
+        @apply transition-all duration-500
+    }
+
+    .form-control {
+      @apply w-full rounded-xl border border-gray-300 px-4 py-2 text-gray-900 bg-white focus:ring-2 focus:ring-indigo-500 focus:outline-none shadow-sm;
+    }
+    .form-label {
+      @apply text-sm font-medium text-gray-700;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+
+  <div class="bg-white shadow-xl border border-gray-200 rounded-2xl p-8 w-full max-w-lg">
+    <h2 class="text-2xl font-semibold text-gray-900 mb-6">
+      Cadastro de Funcionário
+    </h2>
+
+    <form method="post" class="space-y-4">
+      {% csrf_token %}
+
+      <div class="space-y-4">
+        {% bootstrap_form form %}
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-xl transition shadow-md"
+      >
+        Cadastrar
+      </button>
+    </form>
+  </div>
+
+</body>
+</html>

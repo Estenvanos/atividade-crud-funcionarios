@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load django_bootstrap5 %}
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remover Funcionário</title>
+
+    {% bootstrap_css %} {% bootstrap_javascript %}
+
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+    <div
+      class="bg-white w-full max-w-lg p-8 rounded-2xl shadow-xl border border-gray-200"
+    >
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Remover Funcionário</h2>
+
+      <div class="space-y-3 text-gray-800">
+        <p><span class="font-semibold">Nome:</span> {{ fun.nome }}</p>
+        <p><span class="font-semibold">CPF:</span> {{ fun.cpf }}</p>
+        <p><span class="font-semibold">E-mail:</span> {{ fun.email }}</p>
+        <p>
+          <span class="font-semibold">Remuneração:</span> {{ fun.remuneracao }}
+        </p>
+      </div>
+
+      <div class="mt-8 flex items-center justify-between">
+        <button
+          type="button"
+          onclick="history.back()"
+          class="px-5 py-2 rounded-lg bg-gray-200 text-gray-800 hover:bg-gray-300 font-medium shadow transition"
+        >
+          Voltar
+        </button>
+
+        <form method="post">
+          {% csrf_token %}
+          <button
+            type="submit"
+            class="px-5 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 font-medium shadow transition"
+          >
+            Confirmar Remoção
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

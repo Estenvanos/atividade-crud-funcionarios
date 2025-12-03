@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load django_bootstrap5 %}
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listagem de Funcionários</title>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-100 min-h-screen p-8">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+
+      <h1 class="text-3xl font-bold text-gray-900 mb-8 text-center">
+        Listagem de Funcionários
+      </h1>
+
+      <table class="w-full text-left border-collapse overflow-hidden rounded-xl shadow-md">
+        <thead>
+          <tr class="bg-gray-100 border-b border-gray-200">
+            <th class="px-4 py-3 text-sm font-semibold text-gray-700">Nome do funcionário</th>
+            <th class="px-4 py-3 text-sm font-semibold text-gray-700 text-center">Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for funcionario in object_list %}
+          <tr class="hover:bg-gray-50 border-b border-gray-100">
+            <td class="px-4 py-3 text-gray-900">{{ funcionario.nome }}</td>
+
+            <td class="px-4 py-3 text-center space-x-2">
+
+              <a
+                href="{% url 'listar_funcionario' pk=funcionario.id %}"
+                class="px-3 py-1.5 rounded-lg text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 shadow transition"
+              >
+                Exibir
+              </a>
+
+              <a
+                href="{% url 'editar_funcionario' pk=funcionario.id %}"
+                class="px-3 py-1.5 rounded-lg text-sm font-medium bg-emerald-600 text-white hover:bg-emerald-700 shadow transition"
+              >
+                Editar
+              </a>
+
+              <a
+                href="{% url 'remover_funcionario' pk=funcionario.id %}"
+                class="px-3 py-1.5 rounded-lg text-sm font-medium bg-red-600 text-white hover:bg-red-700 shadow transition"
+              >
+                Remover
+              </a>
+
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="mt-8 text-center">
+        <a
+          href="{% url 'form_funcionario' %}"
+          class="px-6 py-2 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 shadow text-base font-medium transition"
+        >
+          Cadastrar novo funcionário
+        </a>
+      </div>
+
+    </div>
+
+  </body>
+</html>
